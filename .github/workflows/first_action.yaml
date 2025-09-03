@@ -13,18 +13,25 @@ jobs:
         run: echo 'my name is david'
   job-two:
     needs: job-one
+    outputs:
+      askcustomer: ${{steps.get_output.outputs.msg}}
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+      
       - name: greetings
         run: echo "my name is aws"
+
+      - name: get_output
+        id: get_output
+        run: echo "msg= What is your name our dearest customer" >> "$GITHUB_OUTPUT"  
 
   job-three:
     needs: job-two
     runs-on: ubuntu-latest
     steps:
       - name: final remarks
-       run: echo "thanks for using our application our dear esteemed customer"
+        run: echo "thanks for using our application our dear esteemed customer '${{ needs.job_one.outputs.askcustomer}} "
        
    
               
