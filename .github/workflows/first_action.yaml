@@ -2,8 +2,7 @@ name: my_first_work_flow
 
 on: 
   push:
-    branches
-    :
+    branches:
       - main
 jobs:
   job-one:
