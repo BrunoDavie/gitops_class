@@ -12,6 +12,7 @@ jobs:
       - name: greetings
         run: echo 'my name is david'
   job-two:
+    needs: job_one
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
